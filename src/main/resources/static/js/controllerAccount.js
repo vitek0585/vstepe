@@ -23,12 +23,6 @@ globalApp.config(['$routeProvider', '$locationProvider', function ($routeProvide
         })
 
 
-        .when('/friends', {
-            templateUrl: '/html/Friends.html',
-            controller: ''
-        });
-
-
     $locationProvider.html5Mode({
         requireBase: false
     });
@@ -68,24 +62,39 @@ globalApp.controller('pageOptionsCtrl', [
 ]);
 
 globalApp.controller('userCtrl', [
-    '$scope','list', function (scope,list) {
+    '$scope','list','dialogService', function (scope,list,dialog) {
+
         scope.list = list;
+        scope.comeMsg = {list:[]};
+
         scope.user = {
+            id:-1,
             name: "",
             lastname: "",
             group: ""
         };
         scope.userTmp = {};
 
-        scope.init = function (name, lastname, group) {
+        scope.init = function (id,name, lastname, group) {
 
+            scope.user.id = id;
             scope.user.name = name;
             scope.user.lastname = lastname;
             scope.user.group = group;
             angular.copy(scope.user, scope.userTmp);
 
+            //setup socket
+            dialog.listen(function (message) {
+
+                scope.comeMsg.list.push(message);
+                scope.$broadcast('notifyMsg',message);
+
+            });
+            dialog.setup(scope.user.id);
 
         }
 
+
     }
+
 ]);

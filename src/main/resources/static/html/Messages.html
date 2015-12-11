@@ -3,7 +3,7 @@
 </head>
 <ul class="nav nav-tabs tabs-message">
     <li class="active">
-        <a href="_#dialog" data-toggle="tab" aria-expanded="true">Диалоги</a>
+        <a href="_#dialog" data-toggle="tab" aria-expanded="true" ng-click="clickMsg()">Диалоги</a>
     </li>
     <li ng-show="dialog.current!=undefined">
         <a href="_#dialog-msg" data-toggle="tab" aria-expanded="false" id="show-dialog">Просмотр диалога</a>
@@ -13,7 +13,7 @@
     <div class="tab-pane fade active in" id="dialog">
 
         <div class="col-md-12 message-user" ng-repeat="msg in messages">
-            <a class="row" ng-click="clickDialog(msg.sender.id)">
+            <a class="row concr-dial" ng-click="clickDialog(msg.sender.id)" >
                 <div class="col-md-2">
                     <img src="/image/title.png" alt="No photo" width="60px" height="60px"/>
                 </div>
@@ -49,7 +49,11 @@
                         <img src="/image/title.png" alt="No photo" width="30px" height="30px"/>
                     </div>
                     <div class="col-md-10">
-                        <label class="description">{{msg.sender.name}}</label>
+                        <label class="description">{{msg.sender.name}}
+                            <span class="text-right" style="float: right;margin-right: 17px;">
+                                {{msg.dateMsg|date:"dd.MM.yyyy HH:mm:ss"}}</span>
+                        </label>
+
                         <span>{{msg.text}}</span>
                     </div>
                     <!--</div>-->
@@ -60,11 +64,11 @@
         </div>
         <div class="row write-message">
             <div class="col-md-12">
-                <textarea class="part-to-send" name="text" placeholder="Введите ваше сообщение..."/>
+                <textarea ng-model="dialog.text" class="part-to-send" name="text" placeholder="Введите ваше сообщение..."/>
             </div>
             <div class="col-md-12" style="margin-top: 10px">
                 <div class="part-to-send">
-                    <button class="btn btn-primary" type="submit">Отправить</button>
+                    <button class="btn btn-primary" type="submit" ng-click="send()">Отправить</button>
                 </div>
             </div>
         </div>

@@ -21,7 +21,13 @@ public interface MessageRepository extends CrudRepository<Message,Long>{
     @Override
     void delete(Long id);
 
-    @Query(value = "SELECT * FROM (SELECT * FROM message WHERE owner_id = :owner order by message_id desc) m group by m.owner_id,m.sender_id",
+    @Query(value = "SELECT tmp.message_id,tmp.owner_id,tmp.sender_id,text,date_msg\n" +
+            "FROM \n" +
+            "(SELECT message_id,IF(owner_id=:owner,:owner,sender_id) as owner_id, IF(sender_id=:owner,owner_id,sender_id) as sender_id,text,date_msg\n" +
+            "        FROM message \n" +
+            "        WHERE owner_id = :owner or sender_id = :owner\n" +
+            "\t\tORDER by  owner_id, sender_id, date_msg DESC) as tmp\n" +
+            "GROUP by tmp.sender_id,tmp.owner_id",
             nativeQuery = true)
     Collection<Message> findAllUserMessage(@Param(value = "owner") long ownerId);
 

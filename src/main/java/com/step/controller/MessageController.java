@@ -25,7 +25,7 @@ public class MessageController {
         User auth = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return messageService.getAllMessageByUser(auth.getId());
     }
-    @RequestMapping(value = "/message",method = RequestMethod.GET)
+    @RequestMapping(value = "/current",method = RequestMethod.GET)
     public Collection<Message> getMsg(@RequestParam("id") long id) {
 
         User auth = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

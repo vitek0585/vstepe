@@ -1,30 +1,40 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:replace="layouts/layout :: head"/>
 <body ng-app="globalApp">
 
-<script src="js/controllerAccount.js"></script>
-<script src="js/massegeController.js"></script>
 
 <section class="container">
     <head th:replace="layouts/layout :: header"/>
+    <section ng-controller="userCtrl">
+        <aside class="menu-aside col-md-3 col-sm-3">
+            <ul class="nav nav-user">
+                <li><a href="#/">Моя Страница</a></li>
+                <li><a href="#option">Мои Настройки</a></li>
+                <li>
+                    <a href="#message">Мои Сообщения
+                        <span ng-show="comeMsg.list.length>0">{{comeMsg.list.length}}</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
 
-    <aside class="menu-aside col-md-3 col-sm-3">
-        <ul class="nav nav-user">
-            <li><a href="#/">Моя Страница</a></li>
-            <li><a href="#option">Мои Настройки</a></li>
-            <li><a href="#message">Мои Сообщения</a></li>
-        </ul>
-    </aside>
-
-    <article class=" col-md-9 col-sm-9 content">
-        <div ng-controller="userCtrl"
-             th:attr="ng-init='init(\''+ ${user.name}+'\',\''+ ${user.lastname}+'\',\''+ ${user.group}+'\')'">
-            <div ng-view="true"></div>
-        </div>
-    </article>
+        <article class=" col-md-9 col-sm-9 content">
+            <div
+                    th:attr="ng-init='init(\''+ ${user.id}+'\',\''+ ${user.name}+'\',\''+ ${user.lastname}+'\',\''+ ${user.group}+'\')'">
+                <div ng-view="true"></div>
+            </div>
+        </article>
+    </section>
 
 </section>
+<script src="/webjars/sockjs-client/0.3.4/sockjs.min.js"></script>
+<script src="/webjars/stomp-websocket/2.3.4/lib/stomp.min.js"></script>
+
+<script src="js/controllerAccount.js"></script>
+<script src="js/dialogService.js"></script>
+<script src="js/massegeController.js"></script>
 
 </body>
 </html>

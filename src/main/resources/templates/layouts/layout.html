@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.springframework.org/security/tags">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/webjars/bootstrap/3.0.0/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/style.css"/>
     <script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/webjars/modernizr/2.8.3/modernizr.js"></script>
     <script src="/webjars/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="/webjars/angularjs/1.4.8/angular.js"></script>
     <script src="/webjars/angularjs/1.4.8/angular-route.js"></script>
@@ -31,28 +32,30 @@
             </a>
 
         </div>
-        <div class="navbar-collapse collapse navbar-left search" ng-controller="searchCtrl">
+        <div class="navbar-collapse collapse navbar-left search" ng-controller="searchCtrl" sec:authorize="isAuthenticated()">
                     <span>
                         <input type="text" class="form-control" placeholder="Поиск" name="srch-term" id="srch-term"
-                        ng-model="filter.nameOfFind"/>
-                        <a href="#search" class="btn btn-default" ng-click="search(filter.nameOfFind)"><i class="glyphicon glyphicon-search" ></i>
+                               ng-model="filter.nameOfFind"/>
+                        <a href="#search" class="btn btn-default" ng-click="search(filter.nameOfFind)"><i
+                                class="glyphicon glyphicon-search"></i>
                         </a>
                     </span>
         </div>
         <div class="navbar-collapse collapse navbar-right">
-            <sec:authorize access="!isAuthenticated()">
+            <span sec:authorize="anonymous">
                 <ul class="nav navbar-nav">
                     <li><a href="/login">войти</a></li>
                 </ul>
                 <ul class="nav navbar-nav">
                     <li><a href="/auth/register">регистрация</a></li>
                 </ul>
-            </sec:authorize>
-            <sec:authorize access="isAuthenticated()">
+            </span>
+            <span sec:authorize="isAuthenticated()">
                 <ul class="nav navbar-nav">
                     <li><a href="/logout">выйти</a></li>
                 </ul>
-            </sec:authorize>
+            </span>
+
         </div>
     </div>
 </div>

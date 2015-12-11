@@ -164,7 +164,7 @@ body {
 }
 
 .message-user hr {
-    margin: 0;
+    margin: 10px 0;
 }
 
 .dialog-user, .tabs-message {
@@ -193,5 +193,12 @@ body {
 .part-to-send {
     margin: auto;
     width: 80%;
+    display: block;
+}
+#dialog{
+    margin-top: 10px;
+}
+.concr-dial{
+
     display: block;
 }

@@ -2,6 +2,7 @@ package com.step.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,11 +16,9 @@ import java.util.List;
  */
 @Entity
 @Table(name = "user")
-
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    //@Column(name="user_id")
     private long id;
 
     @Column(name="`name`")
@@ -37,6 +36,7 @@ public class User implements UserDetails {
     @Column(name="`email`")
     private String email;
 
+    @JsonIgnore
     @Column(name="`password`")
     private String password;
 

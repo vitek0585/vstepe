@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 @Entity
@@ -24,6 +25,9 @@ public class Message {
     @Column(name = "sender_id")
     private long senderId;
 
+    @Column(name = "date_msg")
+    private Date dateMsg;
+
     @ManyToOne(optional = true)
     @JoinColumn(name = "owner_id", nullable = true, updatable = false, insertable = false)
     private User owner;
@@ -35,11 +39,19 @@ public class Message {
     public Message() {
     }
 
+    public Message(MessageDialog source) {
+        ownerId = source.getSenderId();
+        senderId = source.getOwnerId();
+        text = source.getText();
+        dateMsg = source.getDateMsg();
+
+    }
+
     public Message(String text, long ownerId, long senderId) {
         this.text = text;
         this.ownerId = ownerId;
         this.senderId = senderId;
-
+        this.dateMsg = new Date();
     }
 
     public long getId() {
@@ -65,6 +77,7 @@ public class Message {
     public void setOwnerId(long ownerId) {
         this.ownerId = ownerId;
     }
+
     @JsonManagedReference
     public User getOwner() {
         return owner;
@@ -89,5 +102,13 @@ public class Message {
 
     public void setSenderId(long senderId) {
         this.senderId = senderId;
+    }
+
+    public Date getDateMsg() {
+        return dateMsg;
+    }
+
+    public void setDateMsg(Date dateMsg) {
+        this.dateMsg = dateMsg;
     }
 }
