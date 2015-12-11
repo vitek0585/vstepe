@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>﻿
+<head th:fragment="head">
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+    <link rel="stylesheet" href="/webjars/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="/webjars/angularjs/1.4.8/angular.js"></script>
+    <script src="/webjars/angularjs/1.4.8/angular-route.js"></script>
+
+    <script rel="text/javascript" src="/js/globalApp.js"></script>
+    <script src="/js/searchController.js"></script>
+</head>
+<div class="navbar navbar-inverse" th:fragment="header">
+    <div>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/">
+                <img src="/image/brand.png" alt="V stepe" class="brand"/>
+            </a>
+
+        </div>
+        <div class="navbar-collapse collapse navbar-left search" ng-controller="searchCtrl">
+                    <span>
+                        <input type="text" class="form-control" placeholder="Поиск" name="srch-term" id="srch-term"
+                        ng-model="filter.nameOfFind"/>
+                        <a href="#search" class="btn btn-default" ng-click="search(filter.nameOfFind)"><i class="glyphicon glyphicon-search" ></i>
+                        </a>
+                    </span>
+        </div>
+        <div class="navbar-collapse collapse navbar-right">
+            <sec:authorize access="!isAuthenticated()">
+                <ul class="nav navbar-nav">
+                    <li><a href="/login">войти</a></li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li><a href="/auth/register">регистрация</a></li>
+                </ul>
+            </sec:authorize>
+            <sec:authorize access="isAuthenticated()">
+                <ul class="nav navbar-nav">
+                    <li><a href="/logout">выйти</a></li>
+                </ul>
+            </sec:authorize>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+

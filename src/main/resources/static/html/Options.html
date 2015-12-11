@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>﻿
+<div class="form-user-page">
+    <form method="POST" class="form-horizontal" role="form" novalidate name="userForm" id="userInfo"
+          ng-submit="save(userTmp)">
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="name">Имя</label>
+
+            <div class="col-sm-8">
+                <input type="text"
+                       class="form-control"
+                       id="name"
+                       placeholder="Введите имя"
+                       name="name"
+                       ng-model="userTmp.name"
+                       ng-pattern="/^[A-Za-z]{2,20}$/"
+                       ng-class="userForm.name.$dirty&&!userForm.name.$valid?'invalid':''">
+            </div>
+            <div class="col-sm-8 col-md-push-4"
+                 ng-class="userForm.name.$error.pattern?'font-invalid':''"
+                 ng-show="userForm.name.$dirty&&!userForm.name.$valid"
+                 ng-cloak>
+                <span>Имя должно быть не менее 2-х и не более 20-и символов (только буквы)</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="lastName">Фамилия</label>
+
+            <div class="col-sm-8">
+                <input type="text"
+                       class="form-control"
+                       id="lastName"
+                       placeholder="Введите фамилию"
+                       name="lastName"
+                       ng-model="userTmp.lastname"
+                       ng-pattern="/^[A-Za-z]{5,20}$/"
+                       ng-class="userForm.lastName.$dirty&&!userForm.lastName.$valid?'invalid':''">
+            </div>
+            <div class="col-sm-8 col-md-push-4"
+                 ng-class="userForm.lastName.$error.pattern?'font-invalid':''"
+                 ng-show="userForm.lastName.$dirty&&!userForm.lastName.$valid"
+                 ng-cloak>
+                <span>Фамилия должна быть не менее 5-и и не более 20-и символов (только буквы)</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="group">Группа обучения</label>
+
+            <div class="col-sm-8">
+                <input type="text"
+                       class="form-control"
+                       id="group"
+                       placeholder="Группа обучения"
+                       name="group"
+                       ng-model="userTmp.group"
+                       ng-pattern="/^[0-9]\w{2,7}$/"
+                       ng-class="userForm.group.$dirty&&!userForm.group.$valid?'invalid':''">
+            </div>
+            <div class="col-sm-8 col-md-push-4"
+                 ng-class="userForm.group.$error.pattern?'font-invalid':''"
+                 ng-show="userForm.group.$dirty&&!userForm.group.$valid"
+                 ng-cloak>
+                <span>Название группы должно быть не менее 2-х и не более 7-и символов (первый символ должен быть буквой)</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div ng-if="response.message!=''" class="col-md-8 col-lg-push-4" ng-cloak>
+                <pre class="label-error">{{response.message}}</pre>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-12 text-right">
+                <button class="btn btn-primary" type="submit" ng-disabled="!userForm.$valid">Сохранить</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+</body>
+</html>

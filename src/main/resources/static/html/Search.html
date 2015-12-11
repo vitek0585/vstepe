@@ -1,0 +1,22 @@
+﻿<div ng-repeat="user in list.users">
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-5" style="display:inline-block">
+            <img src="../Image/title.png" alt="No title" width="100px" height="100px"/>
+        </div>
+        <div class="col-md-7 contact-info">
+            <div class="form-group">
+                <label class="description">Имя:</label>
+                <span>{{user.name}}</span>
+            </div>
+            <div class="form-group">
+                <label class="description">Фамилия:</label>
+                <span>{{user.lastname}}</span>
+            </div>
+            <div class="form-group">
+                <label class="description">Группа обучения:</label>
+                <span>{{user.group}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+

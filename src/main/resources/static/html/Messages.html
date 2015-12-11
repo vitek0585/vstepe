@@ -1,0 +1,73 @@
+<head>
+    <meta charset="UTF-8">
+</head>
+<ul class="nav nav-tabs tabs-message">
+    <li class="active">
+        <a href="_#dialog" data-toggle="tab" aria-expanded="true">Диалоги</a>
+    </li>
+    <li ng-show="dialog.current!=undefined">
+        <a href="_#dialog-msg" data-toggle="tab" aria-expanded="false" id="show-dialog">Просмотр диалога</a>
+    </li>
+</ul>
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade active in" id="dialog">
+
+        <div class="col-md-12 message-user" ng-repeat="msg in messages">
+            <a class="row" ng-click="clickDialog(msg.sender.id)">
+                <div class="col-md-2">
+                    <img src="/image/title.png" alt="No photo" width="60px" height="60px"/>
+                </div>
+                <div class="col-md-7">
+                    <div>
+                        <label class="description">Имя:</label>
+                        <span>{{msg.sender.name}}</span>
+                    </div>
+                    <div>
+                        <label class="description">Фамилия:</label>
+                        <span>{{msg.sender.lastname}}</span>
+                    </div>
+                    <div>
+                        <label class="description">Группа обучения:</label>
+                        <span>{{msg.sender.group}}</span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <span>{{msg.text}}</span>
+                </div>
+            </a>
+            <hr/>
+        </div>
+
+
+    </div>
+    <div class="tab-pane fade" id="dialog-msg">
+        <div class="dialogs">
+            <div ng-repeat="msg in dialog.messages">
+                <div class="row dialog-user">
+                    <!--<div class="col-md-12">-->
+                    <div class="col-md-2">
+                        <img src="/image/title.png" alt="No photo" width="30px" height="30px"/>
+                    </div>
+                    <div class="col-md-10">
+                        <label class="description">{{msg.sender.name}}</label>
+                        <span>{{msg.text}}</span>
+                    </div>
+                    <!--</div>-->
+
+                </div>
+                <hr/>
+            </div>
+        </div>
+        <div class="row write-message">
+            <div class="col-md-12">
+                <textarea class="part-to-send" name="text" placeholder="Введите ваше сообщение..."/>
+            </div>
+            <div class="col-md-12" style="margin-top: 10px">
+                <div class="part-to-send">
+                    <button class="btn btn-primary" type="submit">Отправить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

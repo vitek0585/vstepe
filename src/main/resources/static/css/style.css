@@ -1,0 +1,197 @@
+body {
+    padding-bottom: 20px;
+    font-family: tahoma, arial, verdana, sans-serif, Lucida Sans;
+    color: #45688E;
+    font-size: 11px;
+
+}
+
+.search .form-control {
+
+    display: inline-block;
+    width: auto;
+}
+
+.font-invalid {
+    color: tomato;
+    font-weight: bolder;
+}
+
+.invalid {
+
+    background: pink;
+}
+
+.form-control {
+    border-radius: 0;
+    height: 28px;
+    font-size: 11px;
+
+}
+
+.navbar-left.search {
+    padding-top: 5px;
+}
+
+.btn {
+    background-color: #4D6E92;
+    color: #fff;
+    height: 30px;
+    font-size: 11px;
+    border: none;
+}
+
+.btn:hover {
+    background: #6d8cb0;
+}
+
+.navbar-inverse {
+    background-color: #4D6E92;
+    border-color: #4D6E92;
+}
+
+.brand {
+    padding-top: 0px;
+    height: 40px;
+}
+
+.container {
+    max-width: 800px;
+    max-height: 40px;
+}
+
+.navbar-collapse .navbar-nav li a {
+    font-weight: bold;
+    font-size: 11px;
+    color: #E8EFF7;
+    text-shadow: 0 1px 0 #4e7097;
+    line-height: inherit;
+    padding-top: 10px;
+
+}
+
+.navbar-nav li:hover {
+    background: #2F5073;
+    color: #fff;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #E8EFF7;
+}
+
+@media (min-width: 768px) {
+    .navbar {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        margin-bottom: 0px;
+        min-height: 30px;
+
+    }
+}
+
+.menu-aside {
+    width: 145px;
+    min-height: 200px;
+    display: inline-block;
+}
+
+.content {
+    border-left: 3px #D9E0E7 solid;
+    min-height: 200px;
+    display: inline-block;
+    border-right: 3px #D9E0E7 solid;
+
+}
+
+.row-container {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.menu-aside form {
+    margin-top: 10px;
+}
+
+.nav-user {
+    margin-top: 8px;
+    width: 100%;
+}
+
+.nav-user li:not(:first-child) {
+    margin-top: 3px;
+}
+
+.nav-user li a {
+    padding: 3px 0;
+    padding-left: 3px;
+    display: block;
+    color: #45688E;
+}
+
+.nav-user li a:hover {
+    border-radius: 3px;
+}
+
+.nav-user li {
+    display: block;
+}
+
+.form-user-page {
+    margin-top: 10px;
+}
+
+.user-header {
+    background: #E9EDF1;
+    font-weight: bolder;
+    padding: 10px 5px;
+}
+
+.contact-info .form-group {
+    margin: 2px 0;
+}
+
+.description {
+    min-width: 150px;
+    text-align: left;
+}
+
+.dialogs {
+    max-height: 400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.message-user hr {
+    margin: 0;
+}
+
+.dialog-user, .tabs-message {
+    margin-top: 10px;
+}
+
+.dialog-user .description {
+    display: block;
+    width: auto;
+}
+
+.write-message {
+    margin-top: 10px;
+    background: #F2F2F2;
+    padding: 10px;
+}
+
+#dialog-msg textarea {
+    resize: none;
+
+    height: 60px;
+    padding: 3px;
+
+}
+
+.part-to-send {
+    margin: auto;
+    width: 80%;
+    display: block;
+}

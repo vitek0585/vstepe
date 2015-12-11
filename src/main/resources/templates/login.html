@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags">
+<head th:replace="layouts/layout :: head"/>
+<body ng-app="globalApp">
+
+<section class="container">
+    <head th:replace="layouts/layout :: header"/>
+
+    <div class="row row-container">
+        <aside class="menu-aside col-md-3 col-sm-3">
+            <form novalidate="true" name="formUser" action=""
+                  method="POST">
+                <!--ng-submit="submit(fm,s.type)"-->
+                <div class="form-group">
+                    <label for="inputEmail">Email</label>
+                    <input type="email" ng-model="fm.username" class="form-control" id="inputEmail" name="username"
+                           ng-required="true"
+                           data-ng-class="formUser.username.$dirty&amp;&amp;formUser.username.$invalid?'invalid':''"
+                           />
+                <span ng-cloak="true" class="font-invalid"
+                      ng-show="formUser.username.$dirty&amp;&amp;formUser.username.$invalid">Email не валиден</span>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword">Пароль</label>
+                    <input ng-model="fm.password" type="password" class="form-control" id="inputPassword"
+                           name="password"
+                           ng-required="true"
+                           ng-class="formUser.password.$dirty&amp;&amp;formUser.password.$invalid?'invalid':''"
+                           ng-minlength="3"/>
+                    <span ng-cloak="true" class="font-invalid" ng-show="formUser.password.$error.minlength">Пароль должен быть не менее 3-х символов</span>
+                </div>
+                <div th:if="${param.error}" class="font-invalid">Ошибка входа!</div>
+                <button type="submit" class="btn btn-primary btn-block" ng-disabled="formUser.$invalid" ng-click="s.type='index'">Войти</button>
+            </form>
+
+        </aside>
+        <article class="col-md-9 col-sm-9 content">
+
+        </article>
+    </div>
+</section>
+</body>
+</html>
